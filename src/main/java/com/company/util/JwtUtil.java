@@ -15,7 +15,7 @@ public class JwtUtil {
         jwtBuilder.setSubject(phone);
         jwtBuilder.setIssuedAt(new Date());
         jwtBuilder.signWith(SignatureAlgorithm.HS256, secretKey);
-//        jwtBuilder.setExpiration(new Date(System.currentTimeMillis() + (60 * 60 * 1000 * 24)));
+        jwtBuilder.setExpiration(new Date(System.currentTimeMillis() + (60 * 60 * 1000 * 24)));
         jwtBuilder.setIssuer("mazgi production");
 
         return jwtBuilder.compact();
