@@ -1,0 +1,43 @@
+###ADMIN CREATE USER
+POST http://localhost:8081/profile/adm/create/student
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBQTIwMDQwOTIiLCJpYXQiOjE2NTk3MzE2MDEsImV4cCI6MTY1OTgxODAwMSwiaXNzIjoibWF6Z2kgcHJvZHVjdGlvbiJ9.YYo5LefQIgmeQWjBfX5gphrXbBVxZ50Ja6mVrN-vuL4
+
+{
+  "faculty": "Asuu",
+  "groups": "202",
+  "login": "AA7643333",
+  "password": "passwordd",
+  "surname": "Aziza",
+  "name": "Abdulla",
+  "phone": "+998990340000"
+}
+
+###STATUSNI OZGARTIRISH
+PUT http://localhost:8081/profile/adm/change_status/0000000082829616018286a2a335000
+Content-Type: application/json
+Authorization: Bearer
+
+
+###LOGIN BOYICHA QIDIRSH
+GET http://5.180.181.63:8081/profile/public/full_info/AD0303234
+Content-Type: application/json
+
+
+###UMUMIY USERLAR
+POST http://localhost:8081/profile/adm/profile_list
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBRDAzMDMyMzQiLCJpYXQiOjE2NjA5MTY5NjAsImlzcyI6Im1hemdpIHByb2R1Y3Rpb24ifQ.5-kluE-1ZiQn8JkK44LHT4rD4xJMj54ewPMBZaKdelc
+
+
+###BLOCK USERLAR
+POST http://5.180.181.63:8081/profile/adm/profile_list/status/block
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBRDAzMDMyMzQiLCJpYXQiOjE2NjA5MTQxNDIsImlzcyI6Im1hemdpIHByb2R1Y3Rpb24ifQ.R2RZQwBR1WZPvMG6MpLWviKEftu1KIKmz0Dm1KX45xY
+
+
+
+###ACTIVE USERLAR
+POST http://localhost:8081/profile/adm/profile_list/status/active
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBQTIwMDQwOTIiLCJpYXQiOjE2NTk3MzA0MTQsImV4cCI6MTY1OTgxNjgxNCwiaXNzIjoibWF6Z2kgcHJvZHVjdGlvbiJ9.skZgDRGqquIFFwvUT551WXPbQkvn0IVYmC7grPhQVds

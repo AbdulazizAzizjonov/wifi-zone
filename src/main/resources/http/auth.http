@@ -1,0 +1,63 @@
+###LOGIN
+POST http://5.180.181.63:8081/auth/login
+Content-Type: application/json
+
+{
+  "login": "AD0303234",
+  "password": "00112233"
+}
+
+
+###STUDENT CREATE
+POST http://localhost:8081/auth/registration/student
+Content-Type: application/json
+
+{
+  "faculty": "XXX",
+  "groups": "qkk",
+  "login": "AA2004761",
+  "password": "abdulaz23",
+  "surname": "qwd",
+  "name": "sss",
+  "phone": "+998880002089"
+}
+
+###STUDENT UPDATE
+POST http://localhost:8081/auth/update/student/40288031827caa6701827cac89fb0000
+Content-Type: application/json
+
+{
+  "faculty": "asuuuuuu",
+  "groups": "Strffff",
+  "surname": "qwert",
+  "name": "fghjk",
+  "phone": "+998888967704"
+}
+
+
+
+###TEACHER CREATE
+POST http://192.168.0.177:8081/auth/registration/teacher
+Content-Type: application/json
+
+{
+  "faculty": "qwertyyyy",
+  "login": "AA1111111",
+  "password": "123456789",
+  "surname": "Asad",
+  "name": "Aliyev",
+  "phone": "+998992324565"
+}
+
+###TEACHER UPDATE
+POST http://localhost:8081/auth/update/teacher/4028803182b5d1cb0182b5d246660000
+Content-Type: application/json
+
+{
+  "faculty": "aaaa",
+  "groups": "Strffff",
+  "degree": "STUDENT",
+  "surname": "qqqq",
+  "name": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "phone": "+998991232312"
+}
