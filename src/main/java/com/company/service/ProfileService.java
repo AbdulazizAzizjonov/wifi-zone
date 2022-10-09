@@ -13,6 +13,7 @@ import com.company.enums.ProfileStatus;
 import com.company.exp.BadRequestException;
 import com.company.exp.ItemNotFoundException;
 import com.company.repository.ProfileRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
@@ -21,6 +22,7 @@ import java.util.Optional;
 import java.util.function.Function;
 
 @Service
+@Slf4j
 public class ProfileService extends GeneralService<ProfileRepository> {
 
     public ProfileService(ProfileRepository repository) {
@@ -30,6 +32,7 @@ public class ProfileService extends GeneralService<ProfileRepository> {
     public ProfileDTO createStudentByAdmin(ProfileStudentDTO dto) {
         Optional<ProfileEntity> entity = repository.findByLogin(dto.getLogin());
         if (entity.isPresent()) {
+            log.error("PROFILESERVICE STUDENT CREATE:  BUNDAY STUDENT MAVJUD (login) : {}", dto.getLogin());
             throw new BadRequestException("Bunday foydalanuvchi mavjud!");
         }
         ProfileEntity profile = modelMapper.map(dto, ProfileEntity.class);
@@ -45,6 +48,7 @@ public class ProfileService extends GeneralService<ProfileRepository> {
 
         Optional<ProfileEntity> optional = repository.findByLogin(login);
         if (optional.isEmpty()) {
+            log.error("PROFILESERVICE FULL INFO:  BUNDAY FOYDALANUVCHI MAVJUD EMAS(login) : {}", login);
             throw new BadRequestException("Bunday foydalanuvchi mavjud emas!");
         }
 
@@ -139,13 +143,16 @@ public class ProfileService extends GeneralService<ProfileRepository> {
         };
         Integer apply = changeStatuses.apply(entity.getStatus());
         if (apply == 0) {
+            log.error("PROFILESERVICE CHANGE STATUS:  STATUS NOT CHANGE : {}", entity.getStatus());
             return new ApiResponseDTO(false, "failed");
         }
+        log.error("PROFILESERVICE CHANGE STATUS:  STATUS  CHANGE : {}", entity.getStatus());
         return new ApiResponseDTO(true, "success");
     }
 
     public ProfileEntity get(String id) {
         return repository.findById(id).orElseThrow(() -> {
+            log.error("PROFILESERVICE GET ID PROFILE:  BUNDAY FOYDALANUVCHI MAVJUD EMAS(id) : {}", id);
             throw new ItemNotFoundException("Foydalanuvchi topilmadi!");
         });
     }
