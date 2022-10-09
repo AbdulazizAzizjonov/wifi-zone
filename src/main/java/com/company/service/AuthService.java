@@ -10,11 +10,13 @@ import com.company.exp.BadRequestException;
 import com.company.exp.ItemNotFoundException;
 import com.company.repository.ProfileRepository;
 import com.company.util.JwtUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class AuthService extends GeneralService<ProfileRepository>{
 
     public AuthService(ProfileRepository repository) {
@@ -24,15 +26,18 @@ public class AuthService extends GeneralService<ProfileRepository>{
     public ProfileDTO login (ProfileLoginDTO dto) {
         Optional<ProfileEntity> optional = repository.findByLogin(dto.getLogin());
         if (optional.isEmpty()) {
+            log.error("AUTHSERVICE Login:  BUNDAY FOYDALANUVCHI MAVJUD EMAS(login) : {}", dto.getLogin());
             throw new BadRequestException("Bunday foydalanuvchi mavjud emas!");
         }
 
         ProfileEntity profile = optional.get();
         if (!profile.getPassword().equals(dto.getPassword())) {
+            log.error("AUTHSERVICE Login:  PAROL NOTOG'RI : {}", dto.getPassword());
             throw new BadRequestException("Parol notog'ri!");
         }
 
         if (!profile.getStatus().equals(ProfileStatus.ACTIVE)) {
+            log.error("AUTHSERVICE Login: FOYDALANUVCHI XOLATI BLOKLANGAN : {}", profile.getStatus());
             throw new BadRequestException("Ruxsat yo'q");
         }
 
@@ -48,6 +53,7 @@ public class AuthService extends GeneralService<ProfileRepository>{
     public ProfileDTO registrationStudent(ProfileStudentDTO dto) {
         Optional<ProfileEntity> entity = repository.findByLogin(dto.getLogin());
         if (entity.isPresent()) {
+            log.error("AUTHSERVICE REGISTRATION STUDENT:  BUNDAY FOYDALANUVCHI MAVJUD (login) : {}", dto.getLogin());
             throw new BadRequestException("Bunday foydalanuvchi ro'yxatdan o'tgan!");
         }
         ProfileEntity profile = modelMapper.map(dto, ProfileEntity.class);
@@ -63,6 +69,7 @@ public class AuthService extends GeneralService<ProfileRepository>{
 
     public ProfileDTO updateStudent(String id, ProfileStudentUpdateDTO dto) {
         ProfileEntity profileEntity = repository.findById(id).orElseThrow(() -> {
+            log.error("AUTHSERVICE UPDATE STUDENT:  BUNDAY FOYDALANUVCHI MAVJUD EMAS(id) : {}", id);
             throw new ItemNotFoundException("Bunday foydalanuvchi mavjud emas!");
         });
         modelMapper.map(dto,profileEntity);
@@ -74,6 +81,7 @@ public class AuthService extends GeneralService<ProfileRepository>{
     public ProfileDTO registrationTeacher(ProfileTeacherDTO dto) {
         Optional<ProfileEntity> entity = repository.findByLogin(dto.getLogin());
         if (entity.isPresent()) {
+            log.error("AUTHSERVICE REGISTRATION TEACHER:  BUNDAY FOYDALANUVCHI MAVJUD (login) : {}", dto.getLogin());
             throw new BadRequestException("Bunday foydalanuvchi ro'yxatdan o'tgan!");
         }
         ProfileEntity profile = modelMapper.map(dto, ProfileEntity.class);
@@ -90,6 +98,7 @@ public class AuthService extends GeneralService<ProfileRepository>{
 
     public ProfileDTO updateTeacher(String id, ProfileTeacherUpdateDTO dto) {
         ProfileEntity profileEntity = repository.findById(id).orElseThrow(() -> {
+            log.error("AUTHSERVICE UPDATE TEACHER:  BUNDAY FOYDALANUVCHI MAVJUD EMAS(id) : {}", id);
             throw new ItemNotFoundException("Bunday foydalanuvchi mavjud emas!");
         });
         modelMapper.map(dto,profileEntity);
