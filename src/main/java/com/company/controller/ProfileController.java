@@ -46,7 +46,7 @@ public class ProfileController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public ResponseEntity<List<ProfileDTO>> getList () {
         List<ProfileDTO> filter = profileService.getList();
-        log.info("PROFILE Controller: ADMIN GET STUDENTS LIST : {}", getList());
+        log.info("PROFILE Controller: ADMIN GET STUDENTS LIST : {}", filter);
         return ResponseEntity.ok().body(filter);
     }
 

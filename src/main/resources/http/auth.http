@@ -1,10 +1,10 @@
 ###LOGIN
-POST http://10.1.20.97:8081/auth/login
+POST http://localhost:8081/auth/login
 Content-Type: application/json
 
 {
-  "login": "AA7777777",
-  "password": "Ali12345"
+  "login": "AA2004092",
+  "password": "abdulaziz23"
 }
 
 
@@ -13,12 +13,12 @@ POST http://localhost:8081/auth/registration/student
 Content-Type: application/json
 
 {
-  "faculty": "XXX",
-  "groups": "qkk",
-  "login": "AA2004761",
-  "password": "abdulaz23",
-  "surname": "qwd",
-  "name": "sss",
+  "faculty": "ELektronika va Avtomatika",
+  "groups": "157-22",
+  "login": "AA1122334",
+  "password": "Abdulloh",
+  "surname": "Azizjonov",
+  "name": "Abdulloh",
   "phone": "+998880002089"
 }
 
@@ -37,7 +37,7 @@ Content-Type: application/json
 
 
 ###TEACHER CREATE
-POST http://192.168.0.177:8081/auth/registration/teacher
+POST http://localhost:8081/auth/registration/teacher
 Content-Type: application/json
 
 {
