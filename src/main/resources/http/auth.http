@@ -1,10 +1,10 @@
 ###LOGIN
-POST http://5.180.181.63:8081/auth/login
+POST http://10.1.20.97:8081/auth/login
 Content-Type: application/json
 
 {
-  "login": "AD0303234",
-  "password": "00112233"
+  "login": "AA7777777",
+  "password": "Ali12345"
 }
 
 
